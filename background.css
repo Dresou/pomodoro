@@ -9,6 +9,10 @@ button{
     box-shadow: none;
     outline: none;
 }
+.background-button{
+    text-align: center;
+
+}
 .backgrounds {
     position: fixed;
     top: 0;
