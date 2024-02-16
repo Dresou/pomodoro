@@ -3,17 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Micro 5 font-->>
     <link rel="stylesheet" href="background.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet">
+        <!-- Micro 5 font-->>
     <script defer src="script.js"></script>
     <title>My Pomodoro App</title>
 </head>
 <body>
     <div class = "dropdown">
-        <button>Backgrounds</button>
+        <button class = "background-button">Backgrounds</button>
         <div class = "dropdown-content">   
         <img src="download.gif" alt="background">
         <img src="c4a8dee7fb9b37a361159f61e55be7c4.gif" alt="background">
-        <img src="" alt="background">
+        <img src="saajr1u905571.jpg" alt="background">
     </div>
+    <button class ="settings-button" type="button">
+        <img src="cog-xxl.png" alt="settings">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownButton = document.querySelector('.background-button');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            let isActive = false; // To track the state of dropdown content
+            
+            dropdownButton.addEventListener('click', function () {
+                if (!isActive) {
+                    dropdownContent.classList.add('active');
+                    isActive = true;
+                } else {
+                    dropdownContent.classList.remove('active');
+                    isActive = false;
+                }
+            });
+        
+            dropdownContent.addEventListener('click', function (event) {
+                if (event.target.tagName === 'IMG') {
+                    dropdownContent.classList.remove('active');
+                    isActive = false; // Set isActive to false when an image is clicked
+                }
+            });
+        });
+    </script>
 </body>
 </html>
