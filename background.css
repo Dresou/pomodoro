@@ -40,6 +40,10 @@ body {
     padding-right: 20px;
     padding-bottom: 20px;
 }
+.background-button{
+    text-align: center;
+
+}
 .backgrounds {
     position: fixed;
     top: 0;
