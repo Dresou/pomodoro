@@ -15,3 +15,23 @@ images.forEach(image => {
         changeBackground(imageUrl);
     });
 });
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    var files = event.dataTransfer.files;
+    if (files.length > 0) {
+        var file = files[0];
+        if (file.type.match('image.*')) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.body.style.backgroundImage = 'url(' + e.target.result + ')';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please drop an image file.");
+        }
+    }
+}

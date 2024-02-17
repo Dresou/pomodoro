@@ -16,34 +16,64 @@
     <div class = "dropdown">
         <button class = "background-button">Backgrounds</button>
         <div class = "dropdown-content">   
-        <img src="download.gif" alt="background">
-        <img src="c4a8dee7fb9b37a361159f61e55be7c4.gif" alt="background">
-        <img src="saajr1u905571.jpg" alt="background">
+        <img src="background/download.gif" alt="background">
+        <img src="background/c4a8dee7fb9b37a361159f61e55be7c4.gif" alt="background">
+        <img src="background/4738707584c1eac3d76befa6c221ba93.gif" alt="background">
+        <div id="dropArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <p>Drag an image</p>
+        </div>
     </div>
     <button class ="settings-button" type="button">
         <img src="cog-xxl.png" alt="settings">
+    </button>
+    <button class = "start-button">Start</button>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const dropdownButton = document.querySelector('.background-button');
             const dropdownContent = document.querySelector('.dropdown-content');
-            let isActive = false; // To track the state of dropdown content
-            
+            const dropArea = document.getElementById('dropArea');
+
             dropdownButton.addEventListener('click', function () {
-                if (!isActive) {
-                    dropdownContent.classList.add('active');
-                    isActive = true;
-                } else {
-                    dropdownContent.classList.remove('active');
-                    isActive = false;
-                }
+                dropdownContent.classList.toggle('active'); // Toggle the 'active' class
+                // Clear the timeout if it exists
+                clearTimeout(autoCloseTimeout);
             });
-        
+
             dropdownContent.addEventListener('click', function (event) {
                 if (event.target.tagName === 'IMG') {
                     dropdownContent.classList.remove('active');
-                    isActive = false; // Set isActive to false when an image is clicked
+                    // Save selected background image URL to localStorage
+                    localStorage.setItem('selectedBgImage', event.target.src);
+                    // Apply the selected background image to body and dropArea
+                    document.body.style.backgroundImage = `url(${event.target.src})`;
+                    dropArea.style.backgroundImage = `url(${event.target.src})`;
                 }
             });
+
+            let autoCloseTimeout; // Variable to hold the timeout reference
+
+            // Function to automatically close the dropdown after 5 seconds
+            function closeDropdownAfterTimeout() {
+                autoCloseTimeout = setTimeout(function () {
+                    dropdownContent.classList.remove('active');
+                }, 4000); // Remove 'active' class after 5 seconds
+            }
+
+            // Call the function initially
+            closeDropdownAfterTimeout();
+
+            // Reset the timeout whenever the dropdown button is clicked
+            dropdownButton.addEventListener('click', function () {
+                clearTimeout(autoCloseTimeout); // Clear the previous timeout
+                closeDropdownAfterTimeout(); // Set a new timeout
+            });
+
+            // Retrieve and apply the selected background image from localStorage on page load
+            const selectedBgImage = localStorage.getItem('selectedBgImage');
+            if (selectedBgImage) {
+                document.body.style.backgroundImage = `url(${selectedBgImage})`;
+                dropArea.style.backgroundImage = `url(${selectedBgImage})`;
+            }
         });
     </script>
 </body>

@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    background-image: url('background/download.gif'); /* Set default background */
+    background-size: cover; /* Cover the entire background */
 }
 .settings-button{
     position: fixed; /* Position the button */
@@ -21,6 +23,24 @@ body {
     width: 60px;
     height: 60px;
     z-index: 1;
+}
+.start-button{
+    border-radius: 20px;
+    border:none;
+    color:rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+    outline: none;
+    position: fixed; /* Position the button */
+    top: 600px; /* Adjust the distance from the top */
+    right: 940px; /* Adjust the distance from the right */
+    z-index: 2; /* Ensure the button is above other elements */
+    font-family: 'Micro 5', sans-serif;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
 }
 .background-button{
     border-radius: 20px;
@@ -74,7 +94,7 @@ body {
     z-index: 2;
     position: fixed; /* Position the button */
     top: 660px; /* Adjust the distance from the top */
-    right: 755px; /* Adjust the distance from the right */
+    right: 750px; /* Adjust the distance from the right */
     column-count: 1; /* Set to 1 column */
     column-gap: 10px; /* Adjust the gap between columns */
 }
@@ -90,10 +110,15 @@ body {
     display: block;
 }
 
-/* Default background */
-body {
-    background-image: url('download.gif'); /* Set default background */
-    background-size: cover; /* Cover the entire background */
+#dropArea {
+    display: inline-block;
+    width: 110px;
+    height: 56.19px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    z-index: 3;
+    color:white;
+    text-align: center;
 }
 
 
